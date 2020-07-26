@@ -108,7 +108,7 @@ app.delete("/todos/:id", async (req,res) => {
 
 // Returns middleware that only parses json and only looks at requests where the Content-Type
 //  header matches the type option.
-
-app.listen(5000 , () => {
+var PORT = process.env.PORT || 5000;
+app.listen(PORT , () => {
     console.log("server started  on 5000");
 })
