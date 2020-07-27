@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO APP</title>
+</head>
+<body>
+    <h1> This is front end </h1>
+    <ol id = 'olTodo'>
+
+    </ol>
+<script>
+    readTodos();
+    async function readTodos() {
+        try{
+
+            const olTodo = document.getElementById('olTodo');
+           
+
+            const result = await fetch("https://todoanshul.herokuapp.com/todos",{method:"GET"});
+            // gto json have to 
+            const todos = await result.json();
+            todos.forEach(t=>
+            {
+                const li = document.createElement("li");
+  
+                li.textContent = t.text ;
+                li.id = t.id;
+                olTodo.appendChild(li);
+            })
+        
+        }
+        catch (e){
+            console.log("error due to reding todos ")
+
+        }
+    }
+
+</script>
+
+</body>
+</html>

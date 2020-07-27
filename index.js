@@ -16,8 +16,9 @@ app.use(express.json());
 
 //  routes
 
-
+app.get("/" , (req,res) => res.sendFile(`{__dirname}/index.html`));
 // create todo 
+
 
 app.post("/todos",async(req,res) => {
     // async provides us await which wait for the fxn to complete 
