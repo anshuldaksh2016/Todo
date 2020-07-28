@@ -10,8 +10,31 @@
     <ol id = 'olTodo'>
 
     </ol>
+
+    <button id="btnCreate"> Add ToDo ! </button>
 <script>
     readTodos();
+
+    const btnCreate = document.getElementById("btnCreate");
+    btnCreate.addEventListener("click" , async e => {
+        const jsonRequest = {}
+        jsonRequest.newTodo = prompt("Enter your todo item")
+
+        const result = await fetch("https://todoanshul.herokuapp.com/todos", {
+        method:"POST",
+        headers:{"Content-Type": "application/json"},
+        body:JSON.stringify(jsonRequest)
+        })
+
+        const success = await result.json()
+        alert("Created the todo !")
+        
+
+    } );
+
+
+
+
     async function readTodos() {
         try{
 
