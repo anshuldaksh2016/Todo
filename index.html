@@ -1,66 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO APP</title>
 </head>
+
 <body>
     <h1> This is front end </h1>
-    <ol id = 'olTodo'>
+    <ol id='olTodo'>
 
     </ol>
 
     <button id="btnCreate"> Add ToDo ! </button>
-<script>
-    readTodos();
+    <button id="delBtn"> Delete to-do </button>
+    <script>
+        readTodos();
 
-    const btnCreate = document.getElementById("btnCreate");
-    btnCreate.addEventListener("click" , async e => {
-        const jsonRequest = {}
-        jsonRequest.description = prompt("Enter your todo item")
+        const btnCreate = document.getElementById("btnCreate");
+        btnCreate.addEventListener("click", async e => {
+            const jsonRequest = {}
+            jsonRequest.description = prompt("Enter your todo item")
 
-        const result = await fetch("https://todoanshul.herokuapp.com/todos", {
-        method:"POST",
-        headers:{"Content-Type": "application/json"},
-        body:JSON.stringify(jsonRequest)
-        })
-
-        const success = await result.json()
-        alert("Created the todo !")
-        
-
-    } );
-
-
-
-
-    async function readTodos() {
-        try{
-
-            const olTodo = document.getElementById("olTodo")
-           
-
-            const result = await fetch("https://todoanshul.herokuapp.com/todos");
-            // gto json have to 
-            const todos = await result.json();
-            todos.forEach(t=>
-            {
-                const li = document.createElement("li");
-  
-                li.textContent = t.description ;
-                li.id = t.id;
-                olTodo.appendChild(li)
+            const result = await fetch("https://todoanshul.herokuapp.com/todos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonRequest)
             })
-        
-        }
-        catch (e){
-            console.log("error due to reding todos ")
 
-        }
-    }
+            const success = await result.json()
+            alert("Created the todo !")
 
-</script>
+
+        });
+
+        const delBtn = document.getElementById("delBtn");
+        delBtn.addEventListener("click", async e => {
+            const del = {}
+            del.id = prompt("Enter the number to delete");
+            const response = await fetch("https://todoanshul.herokuapp.com/todos", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(del)
+            })
+            const success = await response.json();
+            alert("Deleted !");
+
+
+        });
+
+
+
+        async function readTodos() {
+            try {
+
+                const olTodo = document.getElementById("olTodo")
+
+
+                const result = await fetch("https://todoanshul.herokuapp.com/todos");
+                // gto json have to 
+                const todos = await result.json();
+                todos.forEach(t => {
+                    const li = document.createElement("li");
+
+                    li.textContent = t.description;
+                    li.id = t.id;
+                    olTodo.appendChild(li)
+                })
+
+            }
+            catch (e) {
+                console.log("error due to reding todos ")
+
+            }
+        }
+
+    </script>
 
 </body>
+
 </html>
