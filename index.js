@@ -16,7 +16,7 @@ app.use(express.json());
 
 //  routes
 
-app.get("/" , (req,res) => res.sendFile(`index.html`));
+app.get("/" , (req,res) => res.sendFile(`/index.html`));
 // create todo 
 
 
