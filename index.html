@@ -15,7 +15,7 @@
     async function readTodos() {
         try{
 
-            const olTodo = document.getElementById('olTodo');
+            const olTodo = document.getElementById("olTodo")
            
 
             const result = await fetch("https://todoanshul.herokuapp.com/todos");
@@ -27,8 +27,8 @@
   
                 li.textContent = t.text ;
                 li.id = t.id;
-                olTodo.appendChild(li);
-            });
+                olTodo.appendChild(li)
+            })
         
         }
         catch (e){
