@@ -39,7 +39,7 @@
         delBtn.addEventListener("click", async e => {
             const del = {}
             del.id = e.target.id;
-            const response = await fetch("https://todoanshul.herokuapp.com/todos", {
+            const response = await fetch("https://todoanshul.herokuapp.com/todos/$id", {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(del)
@@ -49,7 +49,7 @@
 
 
         });
-        olTodo.appendChild(li);
+       // olTodo.appendChild(li); -->
 
 
 
