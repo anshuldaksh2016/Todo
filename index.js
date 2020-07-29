@@ -6,6 +6,8 @@ const pool = require('./db');
 
 
 
+
+
 // by using the pool we can run the queries with postgres
 
 //  middle ware 
