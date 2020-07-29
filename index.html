@@ -18,13 +18,17 @@
 
     <button id="btnCreate"> Add ToDo ! </button>
     <button id="delBtn"> Delete to-do </button>
-     <button onclick="{googleSignUp}"> Sign up via google </button>
+     <button id="signup-btn"> Sign up via google </button>
 
     
 
     <script>
 
-        import { auth, provider } from 'firebase';
+        import { auth, provider } from './node_modules/firebase';
+        const signup = document.getElementById('signup-btn').addEventListener("click" , async  e=> {
+
+                googleSignUp();
+        });
 
     function googleSignUp(){
         auth.signInWithPopUp(provider);
