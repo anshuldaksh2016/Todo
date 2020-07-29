@@ -25,14 +25,7 @@
     <script>
 
         
-        const signup = document.getElementById('signup-btn').addEventListener("click" , async  e=> {
-
-                googleSignUp();
-        });
-
-    function googleSignUp(){
-        auth.signInWithPopUp(provider);
-    }
+        
 
         
         readTodos();
@@ -54,8 +47,8 @@
 
         });
 
-        //const delBtn = document.getElementById("delBtn");
-        li.addEventListener("click", async e => {
+        const delBtn = document.getElementById("delBtn");
+        delBtn.addEventListener("click", async e => {
             const del = {}
             del.id = e.target.id;
             const response = await fetch("https://todoanshul.herokuapp.com/todos}", {
@@ -96,7 +89,14 @@
             }
         }
         
-        
+        const signup = document.getElementById('signup-btn').addEventListener("click", async e => {
+
+                googleSignUp();
+            });
+
+            function googleSignUp() {
+                auth.signInWithPopUp(provider);
+            }
         
         
         
