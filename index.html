@@ -14,8 +14,60 @@
     </ol>
 
     <button id="btnCreate"> Add ToDo ! </button>
-    <button id="delBtn"> Delete to-do </button>
-    <script>
+     
+    <button onclick="googleSignin()">Google Signin</button>
+     
+     
+
+         
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+
+
+<script>
+    // Your web app's Firebase configuration
+             var firebaseConfig = {
+      apiKey: "AIzaSyD-cmEICZbauuomaIMMf1dOe-HCnIVbOOk",
+      authDomain: "zeta-courage-283710.firebaseapp.com",
+      databaseURL: "https://zeta-courage-283710.firebaseio.com",
+      projectId: "zeta-courage-283710",
+      appId: "1:116059367209:web:8be4075ab386f54c74f938"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // update firestore settings
+    db.settings({timestampsInSnapshots: true});
+ 
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+            function googleSignin() {
+                firebase.auth()
+
+                    .signInWithPopup(provider).then(function (result) {
+                        var token = result.credential.accessToken;
+                        var user = result.user;
+
+                        console.log(token)
+                        console.log(user)
+                    }).catch(function (error) {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+
+                        console.log(error.code)
+                        console.log(error.message)
+                    });
+            }
+
+            
+            
+
         readTodos();
 
         const btnCreate = document.getElementById("btnCreate");
@@ -35,23 +87,7 @@
 
         });
 
-        //const delBtn = document.getElementById("delBtn");
-        li.addEventListener("click", async e => {
-            const del = {}
-            del.id = e.target.id;
-            const response = await fetch("https://todoanshul.herokuapp.com/todos}", {
-                method: "DELETE",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(del)
-            })
-            const success = await response.json();
-            alert("Deleted !");
-
-
-        });
-      
-
-
+        
 
         async function readTodos() {
             try {
@@ -64,7 +100,6 @@
                 const todos = await result.json();
                 todos.forEach(t => {
                     const li = document.createElement("li");
-
                     li.textContent = t.description;
                     li.id = t.id;
                     olTodo.appendChild(li)

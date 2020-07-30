@@ -4,7 +4,7 @@ const cors = require('cors');
 const pool = require('./db');
 
 var firebase = require('firebase');
-
+// import { auth, provider } from './node_modules/firebase';
 
 
 
