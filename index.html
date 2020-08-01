@@ -123,14 +123,15 @@
             const jsonRequest = {}
             jsonRequest.description = prompt("Enter your todo item")
 
-            const result = await fetch("https://todoanshul.herokuapp.com/todos", {
+            const response = await fetch("https://todoanshul.herokuapp.com/todos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(jsonRequest)
             })
 
-            const success = await result.json()
-            alert("Created the todo !")
+            const success =  await response.json();
+            alert("Created the todo !");
+            window.location.reload();
 
 
         });
