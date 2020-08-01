@@ -17,6 +17,18 @@
      
     <button onclick="googleSignin()">Google Signin</button>
      
+    <h4>Enter your number for authentication</h4>
+    <form>
+        <input type='text' id="number" placeholder="enter your number">
+        <div id="recaptcha-container"></div>
+        <button type="button" onclick="phoneAuth();"> Send Otp</button>
+    </form><br>
+    <h4 >Enter the verification code </h4>
+    <form>
+        <input type="text" id="verificationCode" placeholder="Enter the verification code">
+        <br>
+        <button type='button' onclick="codeVerify()"> Verify code </button>
+    </form>
      
 
          
@@ -65,8 +77,44 @@
                     });
             }
 
+                firebase.auth().useDeviceLanguage();
+                window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+            
+                recaptchaVerifier.render().then(function (widgetId) {
+                        window.recaptchaWidgetId = widgetId;
+                    });
             
             
+            function phoneAuth(){
+                var number = document.getElementById('number').value;
+                var appVerifier = window.recaptchaVerifier;
+              //  phone numer auth function in firebase 
+                 // it take two parameters one is number and seconds os rcaptcha
+                var appVerifier = window.recaptchaVerifier;
+
+                firebase.auth().signInWithPhoneNumber(number, appVerifier).then(function (confirmationResult){
+                    window.confirmationResult=confirmationResult;
+                    coderesult = confirmationResult;
+                    console.log(coderesult);
+                    alert("Message sent");
+                }).catch(function (error){
+                    alert(error.message);
+                })
+            }
+
+            function codeVerify(){
+                var code = document.getElementById('verificationCode').value;
+                coderesult.confirm(code).then( function (result){
+                    alert("successfully registered");
+                    var user = result.user;
+                    console.log(user);
+                }).catch(function (error){
+                    alert(error.message);
+                })
+
+
+            }
+
 
         readTodos();
 
