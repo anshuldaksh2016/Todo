@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
+const path = require('path')
 
 var firebase = require('firebase');
 // import { auth, provider } from './node_modules/firebase';
@@ -16,6 +17,7 @@ var firebase = require('firebase');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 // req.body() we can access this object
 
 //  routes
