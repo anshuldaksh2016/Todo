@@ -5,32 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO APP</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
-    <h1> This is front end </h1>
-    <ol id='olTodo'>
 
-    </ol>
+    <div class="header">
+       <h1>My To Do List</h1> 
+    </div>
+    
+
+
+    <div class="ordered-list">
+        <ul id='olTodo'>
+        
+        </ul>
+        
+    </div>
 
     <button id="btnCreate"> Add ToDo ! </button>
+    
+    <button onclick="googleSignin()" id="sign-in-btn">Google Signin</button>
+
+
+   
+
+
+    
+    <div class="phoneform">
+        <h2>Phone Auth Form</h2>
      
-    <button onclick="googleSignin()">Google Signin</button>
-     
-    <h4>Enter your number for authentication</h4>
-    <form>
+        <h4>Enter your number for authentication</h4>
+    <form class="phonebox">
         <input type='text' id="number" placeholder="enter your number">
         <div id="recaptcha-container"></div>
         <button type="button" onclick="phoneAuth();"> Send Otp</button>
     </form><br>
-    <h4 >Enter the verification code </h4>
-    <form>
+   
+    <h4>Enter the verification code </h4>
+    <form class="codebox">
         <input type="text" id="verificationCode" placeholder="Enter the verification code">
         <br>
         <button type='button' onclick="codeVerify()"> Verify code </button>
     </form>
-     
+    </div>
+<footer>
+<div class="tec-stack" align="justify">
+    <h2> Technologies Used </h2>
+    <ol class="gradient-class">
+        <li>Nodejs : As Backend </li>
+        <li>Postgres : as database</li>
+        <li>Firebase : for authentication</li>
+        <li>Heroku: for Hosting </li>
+        <li> Git : for version control </li>
+    </ol>
+</div>
+<hr>
+<div class="footer-class">
 
+    <h2>Design and Developed by </h2>
+    <h4>Anshul Daksh Prajapati</h4>
+    
+</div>
+
+
+    
+</footer>
+    
          
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
